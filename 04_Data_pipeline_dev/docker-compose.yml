@@ -1,0 +1,43 @@
+version: "3.5"
+name: 04_Data_pipeline_dev
+services:
+  postgresql_dev:
+    image: postgres:15
+    volumes:
+       - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+
+  lakefs_dev:
+    image: treeverse/lakefs:1.7.0
+    ports:
+      - 8000:8000
+    environment:
+      LAKEFS_INSTALLATION_USER_NAME: "admin"
+      LAKEFS_INSTALLATION_ACCESS_KEY_ID: "access_key"
+      LAKEFS_INSTALLATION_SECRET_ACCESS_KEY: "secret_key"
+      LAKEFS_DATABASE_TYPE: "local"
+      LAKEFS_AUTH_ENCRYPT_SECRET_KEY: "wait"
+      LAKEFS_BLOCKSTORE_TYPE: "local"
+
+  notebook_dev:
+    build : ./jupyter
+    environment:
+      - NOTEBOOK_ARGS=--log-level='WARN' --NotebookApp.token='' --NotebookApp.password='' --notebook-dir=/home/jovyan/notebooks
+    ports:
+      - 8888:8888 # Jupyter
+      - 4141:4141 # Kedro-viz
+      - 8787:8787 # dask client
+    volumes:
+      - ./notebooks:/home/jovyan/notebooks
+
+volumes:
+  postgres_data:
+  
+networks:
+  default:
+    name: dev

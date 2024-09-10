@@ -1,0 +1,15 @@
+postgres_key: {
+        "host":'192.168.28.40',
+        "port" :'5432',
+        "user" :'admin',
+        "pass" :'1234',
+        "db" :'chinook'
+}
+landing_chinook_catalog : "/home/jovyan/notebooks/data-platform-00/conf/base/catalog_landing_chinook_01.yml"
+landing_chinook_params : "/home/jovyan/notebooks/data-platform-00/conf/base/parameters_landing_01.yml"
+lakefs_key: {
+        "lakefsEndPoint":'192.168.28.40:8000',
+        "lakefsAccessKey" :'access_key',
+        "lakefsSecretKey" :'secret_key'
+}
+select_table: ['customer']
