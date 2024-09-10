@@ -1,6 +1,11 @@
 """Project pipelines."""
 from typing import Dict
 
+import sys
+import os
+sys.path.append(os.getcwd())
+
+
 from kedro.framework.project import find_pipelines
 from kedro.pipeline import Pipeline
 

@@ -5,11 +5,11 @@ from jinja2 import Template
 import os
 import dask.dataframe as dd
 
-lakefsEndPoint='192.168.28.40:8000'
+lakefsEndPoint='lakefs-dev:8000'
 lakefsAccessKey='access_key'
 lakefsSecretKey='secret_key'
 
-file_path = "/home/jovyan/notebooks/data-platform-00/notebooks/catalog.yml"
+file_path = "catalog.yml"
 
 catalog_template = """
 landing_{{ app_name }}_{{ source }}_{{ dbname }}_{{ table_name }}:

@@ -1,7 +1,7 @@
 source_01: {
         "application" :'app01',
         "source":'db1',
-        "host":'192.168.28.40',
+        "host":'postgresql-dev',
         "port" :'5432',
         "user" :'admin',
         "pass" :'1234',
@@ -10,17 +10,17 @@ source_01: {
 source_02: {
         "application" :'app01',
         "source":'db2',
-        "host":'192.168.28.40',
+        "host":'postgresql-dev',
         "port" :'5432',
         "user" :'admin',
         "pass" :'1234',
         "db" :'northwind'
 }
-landing_catalog : "/home/jovyan/notebooks/data-platform-00/conf/base/catalog_landing_01.yml"
-integration_catalog : "/home/jovyan/notebooks/data-platform-00/conf/base/catalog_integration_01.yml"
-landing_params : "/home/jovyan/notebooks/data-platform-00/conf/base/parameters_landing_01.yml"
+landing_catalog : "/jupyter/data-platform-00/conf/base/catalog_landing_01.yml"
+integration_catalog : "/jupyter/data-platform-00/conf/base/catalog_integration_01.yml"
+landing_params : "/jupyter/data-platform-00/conf/base/parameters_landing_01.yml"
 lakefs_key: {
-        "lakefsEndPoint":'192.168.28.40:8000',
+        "lakefsEndPoint":'lakefs-dev:8000',
         "lakefsAccessKey" :'access_key',
         "lakefsSecretKey" :'secret_key'
 }
