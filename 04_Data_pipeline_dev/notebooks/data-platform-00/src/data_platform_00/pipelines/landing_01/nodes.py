@@ -4,9 +4,9 @@ from jinja2 import Template
 import os
 
 catalog_template = """
-landing_lakefs_{{ table_name }}:
+landing_{{ application }}_{{ source }}_{{ table_name }}:
   type: dask.ParquetDataset
-  filepath: s3a://data-platform-01/main/landing_zone/{{ table_name }}.parquet
+  filepath: s3a://data-platform-01/main/landing_zone/{{ application }}/{{ source }}/{{ table_name }}.parquet
   credentials: lakefs
   
 """
@@ -21,10 +21,12 @@ def create_catalog(path:str):
         with open(path, 'w') as file:
             file.write('')
               
-def landing_func(pg_credential: dict,lake_credential: dict,path:str,select:list):
+def landing_func(pg_credential: dict,lake_credential: dict,path:str):
     
     name_catalog = read_catalog(path)
     
+    app = pg_credential["application"]
+    sour = pg_credential["source"]
     user = pg_credential["user"]
     password = pg_credential["pass"]
     host = pg_credential["host"]
@@ -55,20 +57,19 @@ SET s3_use_ssl="false";
     data_list = data['table_name'].tolist()
 
     for i in data_list:
-        if i in select:
             name_check = f"landing_lakefs_{i}"
             if name_catalog == None or name_check not in name_catalog.keys() :
 
                 con.sql(f"CREATE OR REPLACE VIEW {i} AS SELECT * FROM db_pg.{i};")      
 
                 template = Template(catalog_template)
-                catalog_entry = template.render(table_name=i)
+                catalog_entry = template.render(application=app,source=sour,table_name=i)
 
                 with open(path, 'a') as file:
                     file.write(catalog_entry)
 
                 # Copy data to the s3 path
-                con.execute(f"COPY {i} TO 's3a://data-platform-01/main/landing_zone/{i}.parquet' (FORMAT PARQUET)")
+                con.execute(f"COPY {i} TO 's3a://data-platform-01/main/landing_zone/{app}/{sour}/{i}.parquet' (FORMAT PARQUET)")
             else :
                 con.sql(f"CREATE OR REPLACE VIEW {i} AS SELECT * FROM db_pg.{i};")
-                con.execute(f"COPY {i} TO 's3a://data-platform-01/main/landing_zone/{i}.parquet' (FORMAT PARQUET)")
+                con.execute(f"COPY {i} TO 's3a://data-platform-01/main/landing_zone/{app}/{sour}/{i}.parquet' (FORMAT PARQUET)")

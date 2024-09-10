@@ -1,10 +1,4 @@
-import yaml
 import pandas as pd
-
-with open('/home/jovyan/notebooks/data-platform-00/notebooks/data_lib/master.yaml', 'r') as file:
-    data = yaml.safe_load(file)
-
-master_dict = data['master_country']
 
 class Monad:
     def __init__(self, value):
@@ -55,32 +49,16 @@ def province_name(x):
 def clean_datetime(x):
     return pd.to_datetime(x,errors="raise")
 
-def country_name_01(x):
-    valid_country = master_dict
-    return valid_country[x.lower()]
-
-def country_name_02(x):
-    master_dict = {"vietnam":"VN",
-                    "korea" : "KR",
-                   "taiwan": "TW",
-                   "united kingdom": "GB",
-                   "hong kong" : "HK",
-                   "russia" : "RU",
-                   "laos" : "LA",
-                   "netherlands" : "NL",
-                   "turkey" : "TR",
-                   "iran" : "IR",
-                   "republic of south africa" : "ZA"
-                   
-                  }
-    
-    valid_country = master_dict
-    return valid_country[x.lower()]
-
-def check_countryName(df : pd.DataFrame,col : str)-> pd.DataFrame:
+def clensing(df : pd.DataFrame,col : str,function_list : list)-> pd.DataFrame:
     column_name = col
-    df[column_name+'_result'] = df[column_name].apply(lambda x: Monad(x)| country_name_01 | country_name_02 )
+    df[column_name+'_result'] = df[column_name].apply(lambda x: _clensing(x,function_list))
     return df
+
+def _clensing(x,function_list : list):
+    monad = Monad(x)
+    for f in function_list:
+        monad |= f
+    return monad
 
 def explode_result(df : pd.DataFrame,col : str)-> pd.DataFrame:
     column_name = col
@@ -93,6 +71,7 @@ def explode_result(df : pd.DataFrame,col : str)-> pd.DataFrame:
     })
     df_result['column']=column_name
     df2_result = df_result.explode('message').reset_index(names=['row'])
+    df2_result = df2_result[["row","column","input","value","status","message"]]
     return df2_result
 
 def get_dirty(df : pd.DataFrame)-> pd.DataFrame:

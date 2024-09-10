@@ -10,7 +10,7 @@ class Monad:
     def __init__(self, value):
         self.value = value
         self.status = 'dirty'  # Starting with 'dirty'
-        self.message = "[]"
+        self.message = []
         self.dtype = object
     def __or__(self, func):
         if self.status == 'dirty': # Only process if 'dirty'

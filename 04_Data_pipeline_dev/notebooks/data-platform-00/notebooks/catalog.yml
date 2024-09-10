@@ -1,16 +1,11 @@
 
-landing_app01_db1_chinook_invoice_line:
-  type: dask.ParquetDataset
-  filepath: s3a://data-platform-notebook/main/landing_zone/app01/db1/chinook/invoice_line.parquet
-  credentials: lakefs
-  
-landing_app01_db1_chinook_invoice:
-  type: dask.ParquetDataset
-  filepath: s3a://data-platform-notebook/main/landing_zone/app01/db1/chinook/invoice.parquet
-  credentials: lakefs
-  
 landing_app01_db1_chinook_customer:
   type: dask.ParquetDataset
   filepath: s3a://data-platform-notebook/main/landing_zone/app01/db1/chinook/customer.parquet
+  credentials: lakefs
+  
+landing_app01_db2_northwind_customers:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-notebook/main/landing_zone/app01/db2/northwind/customers.parquet
   credentials: lakefs
   

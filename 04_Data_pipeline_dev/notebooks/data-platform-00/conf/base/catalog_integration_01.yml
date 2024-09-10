@@ -1,0 +1,4 @@
+integrate_customer:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/integration_zone/customer.parquet
+  credentials: lakefs
