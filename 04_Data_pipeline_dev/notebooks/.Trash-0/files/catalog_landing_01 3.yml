@@ -1,0 +1,6 @@
+
+l.app01.db1.playlist_track:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/playlist_track.parquet
+  credentials: lakefs
+  

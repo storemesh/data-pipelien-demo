@@ -4,7 +4,8 @@ services:
   postgresql-dev:
     image: postgres:15
     volumes:
-       - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql_scripts:/docker-entrypoint-initdb.d
     environment:
       POSTGRES_DB: mydb
       POSTGRES_USER: admin

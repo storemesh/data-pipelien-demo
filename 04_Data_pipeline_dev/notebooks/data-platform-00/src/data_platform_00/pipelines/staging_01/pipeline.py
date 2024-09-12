@@ -10,15 +10,15 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=staging01,
                 inputs=[
-                        "landing_app01_db1_customer",
-                        "landing_app01_db2_customers"
+                        "l.app01.db1.customer",
+                        "l.app01.db2.customers"
                        ],
-                outputs="integrate_customer",
+                outputs="i.customer",
                 name="customer_integrate_node",
             ),
             node(
                 func=show,
-                inputs="integrate_customer",
+                inputs="i.customer",
                 outputs=None,
                 name="show_customer_integrate_node",
             )

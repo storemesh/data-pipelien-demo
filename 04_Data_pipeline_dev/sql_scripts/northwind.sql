@@ -2,6 +2,17 @@
 -- PostgreSQL database dump
 --
 
+DROP DATABASE IF EXISTS northwind;
+
+
+/*******************************************************************************
+   Create database
+********************************************************************************/
+CREATE DATABASE northwind;
+
+
+\c northwind;
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';

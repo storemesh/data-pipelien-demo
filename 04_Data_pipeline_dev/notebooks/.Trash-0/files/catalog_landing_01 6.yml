@@ -1,0 +1,126 @@
+
+l.app01.db1.playlist_track:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/playlist_track/
+  credentials: lakefs
+  
+l.app01.db1.track:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/track/
+  credentials: lakefs
+  
+l.app01.db1.playlist:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/playlist/
+  credentials: lakefs
+  
+l.app01.db1.media_type:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/media_type/
+  credentials: lakefs
+  
+l.app01.db1.invoice_line:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/invoice_line/
+  credentials: lakefs
+  
+l.app01.db1.invoice:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/invoice/
+  credentials: lakefs
+  
+l.app01.db1.genre:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/genre/
+  credentials: lakefs
+  
+l.app01.db1.customer:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/customer/
+  credentials: lakefs
+  
+l.app01.db1.employee:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/employee/
+  credentials: lakefs
+  
+l.app01.db1.artist:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/artist/
+  credentials: lakefs
+  
+l.app01.db1.album:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/album/
+  credentials: lakefs
+  
+l.app01.db2.categories:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/categories/
+  credentials: lakefs
+  
+l.app01.db2.customer_demographics:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/customer_demographics/
+  credentials: lakefs
+  
+l.app01.db2.us_states:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/us_states/
+  credentials: lakefs
+  
+l.app01.db2.territories:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/territories/
+  credentials: lakefs
+  
+l.app01.db2.customer_customer_demo:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/customer_customer_demo/
+  credentials: lakefs
+  
+l.app01.db2.customers:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/customers/
+  credentials: lakefs
+  
+l.app01.db2.region:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/region/
+  credentials: lakefs
+  
+l.app01.db2.employee_territories:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/employee_territories/
+  credentials: lakefs
+  
+l.app01.db2.employees:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/employees/
+  credentials: lakefs
+  
+l.app01.db2.order_details:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/order_details/
+  credentials: lakefs
+  
+l.app01.db2.shippers:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/shippers/
+  credentials: lakefs
+  
+l.app01.db2.orders:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/orders/
+  credentials: lakefs
+  
+l.app01.db2.products:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/products/
+  credentials: lakefs
+  
+l.app01.db2.suppliers:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/suppliers/
+  credentials: lakefs
+  

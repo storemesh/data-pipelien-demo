@@ -1,0 +1,126 @@
+
+l.app01.db1.playlist_track:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/playlist_track.parquet
+  credentials: lakefs
+  
+l.app01.db1.track:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/track.parquet
+  credentials: lakefs
+  
+l.app01.db1.playlist:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/playlist.parquet
+  credentials: lakefs
+  
+l.app01.db1.media_type:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/media_type.parquet
+  credentials: lakefs
+  
+l.app01.db1.invoice_line:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/invoice_line.parquet
+  credentials: lakefs
+  
+l.app01.db1.invoice:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/invoice.parquet
+  credentials: lakefs
+  
+l.app01.db1.genre:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/genre.parquet
+  credentials: lakefs
+  
+l.app01.db1.customer:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/customer.parquet
+  credentials: lakefs
+  
+l.app01.db1.employee:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/employee.parquet
+  credentials: lakefs
+  
+l.app01.db1.artist:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/artist.parquet
+  credentials: lakefs
+  
+l.app01.db1.album:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db1/album.parquet
+  credentials: lakefs
+  
+l.app01.db2.categories:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/categories.parquet
+  credentials: lakefs
+  
+l.app01.db2.customer_demographics:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/customer_demographics.parquet
+  credentials: lakefs
+  
+l.app01.db2.us_states:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/us_states.parquet
+  credentials: lakefs
+  
+l.app01.db2.territories:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/territories.parquet
+  credentials: lakefs
+  
+l.app01.db2.customer_customer_demo:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/customer_customer_demo.parquet
+  credentials: lakefs
+  
+l.app01.db2.customers:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/customers.parquet
+  credentials: lakefs
+  
+l.app01.db2.region:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/region.parquet
+  credentials: lakefs
+  
+l.app01.db2.employee_territories:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/employee_territories.parquet
+  credentials: lakefs
+  
+l.app01.db2.employees:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/employees.parquet
+  credentials: lakefs
+  
+l.app01.db2.order_details:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/order_details.parquet
+  credentials: lakefs
+  
+l.app01.db2.shippers:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/shippers.parquet
+  credentials: lakefs
+  
+l.app01.db2.orders:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/orders.parquet
+  credentials: lakefs
+  
+l.app01.db2.products:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/products.parquet
+  credentials: lakefs
+  
+l.app01.db2.suppliers:
+  type: dask.ParquetDataset
+  filepath: s3a://data-platform-01/main/landing_zone/app01/db2/suppliers.parquet
+  credentials: lakefs
+  

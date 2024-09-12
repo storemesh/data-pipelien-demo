@@ -4,9 +4,9 @@ from jinja2 import Template
 import os
 
 catalog_template = """
-landing_{{ application }}_{{ source }}_{{ table_name }}:
+l.{{ application }}.{{ source }}.{{ table_name }}:
   type: dask.ParquetDataset
-  filepath: s3a://data-platform-01/main/landing_zone/{{ application }}/{{ source }}/{{ table_name }}.parquet
+  filepath: s3a://data-platform-01/main/landing_zone/{{ application }}/{{ source }}/{{ table_name }}/
   credentials: lakefs
   
 """
@@ -24,52 +24,36 @@ def create_catalog(path:str):
 def landing_func(pg_credential: dict,lake_credential: dict,path:str):
     
     name_catalog = read_catalog(path)
-    
-    app = pg_credential["application"]
-    sour = pg_credential["source"]
-    user = pg_credential["user"]
-    password = pg_credential["pass"]
-    host = pg_credential["host"]
-    port = pg_credential["port"]
-    db = pg_credential["db"]
-    
-    lakefsEndPoint = lake_credential["lakefsEndPoint"]
-    lakefsAccessKey = lake_credential["lakefsAccessKey"]
-    lakefsSecretKey = lake_credential["lakefsSecretKey"]
-    
-    PG_CON_STR=f"postgresql://{user}:{password}@{host}:{port}/{db}" 
+
     con = duckdb.connect(':memory:')
-    # or run and create file for save state "db.duckdb"
+    
     con.sql("""INSTALL postgres; LOAD postgres;""") 
     con.sql(f"""
-INSTALL httpfs;
-LOAD httpfs;
-SET s3_endpoint="{lakefsEndPoint}";
-SET s3_access_key_id="{lakefsAccessKey}";
-SET s3_secret_access_key="{lakefsSecretKey}";
-SET s3_url_style="path";
-SET s3_use_ssl="false";
-""")
-    str_exc = f"ATTACH 'dbname={db} user={user} password={password} host={host} port={port}' AS db_pg (TYPE POSTGRES);"
-    con.sql(str_exc)
+            INSTALL httpfs; LOAD httpfs;
+            SET s3_endpoint="{lake_credential["lakefsEndPoint"]}";
+            SET s3_access_key_id="{lake_credential["lakefsAccessKey"]}";
+            SET s3_secret_access_key="{lake_credential["lakefsSecretKey"]}";
+            SET s3_url_style="path"; SET s3_use_ssl="false";
+        """)
+    con.sql(f"ATTACH '{pg_credential["host"]}' AS db_pg (TYPE POSTGRES);")
     
     data = con.execute("SELECT * FROM duckdb_tables;").df()
     data_list = data['table_name'].tolist()
 
     for i in data_list:
-            name_check = f"landing_lakefs_{i}"
-            if name_catalog == None or name_check not in name_catalog.keys() :
-
-                con.sql(f"CREATE OR REPLACE VIEW {i} AS SELECT * FROM db_pg.{i};")      
+            name_check = f"l.{pg_credential["application"]}.{pg_credential["source"]}.{i}"
+            sql_create = f"CREATE OR REPLACE VIEW {i} AS SELECT * FROM db_pg.{i};"
+            sql = f"COPY {i} TO 's3a://data-platform-01/main/landing_zone/{pg_credential["application"]}/{pg_credential["source"]}/{i}.parquet' (FORMAT PARQUET, ROW_GROUP_SIZE 100)"
+            if name_catalog == None or name_check not in name_catalog.keys() :     
 
                 template = Template(catalog_template)
-                catalog_entry = template.render(application=app,source=sour,table_name=i)
+                catalog_entry = template.render(application=pg_credential["application"],source=pg_credential["source"],table_name=i)
 
                 with open(path, 'a') as file:
                     file.write(catalog_entry)
-
-                # Copy data to the s3 path
-                con.execute(f"COPY {i} TO 's3a://data-platform-01/main/landing_zone/{app}/{sour}/{i}.parquet' (FORMAT PARQUET)")
+                    
+                con.sql(sql_create) 
+                con.execute(sql)
             else :
-                con.sql(f"CREATE OR REPLACE VIEW {i} AS SELECT * FROM db_pg.{i};")
-                con.execute(f"COPY {i} TO 's3a://data-platform-01/main/landing_zone/{app}/{sour}/{i}.parquet' (FORMAT PARQUET)")
+                con.sql(sql_create)
+                con.execute(sql)

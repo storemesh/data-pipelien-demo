@@ -1,20 +1,12 @@
 source_01: {
         "application" :'app01',
         "source":'db1',
-        "host":'postgresql-dev',
-        "port" :'5432',
-        "user" :'admin',
-        "pass" :'1234',
-        "db" :'chinook'
+        "host":'postgresql://admin:1234@postgresql-dev:5432/chinook'
 }
 source_02: {
         "application" :'app01',
         "source":'db2',
-        "host":'postgresql-dev',
-        "port" :'5432',
-        "user" :'admin',
-        "pass" :'1234',
-        "db" :'northwind'
+        "host":'postgresql://admin:1234@postgresql-dev:5432/northwind'
 }
 landing_catalog : "/jupyter/data-platform-00/conf/base/catalog_landing_01.yml"
 integration_catalog : "/jupyter/data-platform-00/conf/base/catalog_integration_01.yml"
